@@ -1,0 +1,21 @@
+<template name="Print">
+    <style>
+        p {
+            display: inline !important;
+        }
+    </style>
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box" style="border-top: none; border-bottom: none">
+                    <div class="box-title text-center"><h2>{{Name}}</h2></div>
+                    <div class="box-body">
+                        {{#each Questions}}
+                            {{> Template.dynamic template=(getTestTemplateName this.QuestionType) data=(refineQuestion this @index) }}
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</template>

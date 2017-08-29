@@ -1,0 +1,9 @@
+node_modules/
+.idea/
+mup*
+mup-*
+dev-*
+test*
+/public/*.pdf
+public/quiz-export/*.doc
+public/quiz-export/*.docx

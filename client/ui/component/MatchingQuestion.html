@@ -1,0 +1,191 @@
+<template name="InsertUpdateMatching">
+    {{#autoForm id=getFromId schema=schema doc=getData type="normal"}}
+        {{> afQuickField name="Content.Question"}}
+        {{> afQuickField name="Content.MatchingPairs"}}
+        {{> afQuickField name="Category"}}
+        {{> afFieldInput name="QuestionType"}}
+
+        <a href="#" data-toggle="collapse">Nhiều hơn</a>
+
+        <div class="collapse">
+            {{> afQuickField name="Level"}}
+            {{> afQuickField name="CorrectPoints"}}
+            {{> afQuickField name="IncorrectPoints"}}
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block"> Submit</button>
+    {{/autoForm}}
+</template>
+
+<template name="InsertUpdateMatchingPopup">
+    <div class="modal fade" id="{{getModalId}}">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"> Câu hỏi ghép cặp</h4>
+                </div>
+                <div class="modal-body">
+                    {{#with passedData}}
+                        {{> InsertUpdateMatching }}
+                    {{/with}}
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="MatchingPreview">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="question-preview">
+                <h5><strong>Câu hỏi {{refineIndex index}}</strong>: {{{Content.Question}}}</h5>
+                <table class="table table-bordered table-hover" style="background-color: white;">
+                    <thead>
+                    <tr>
+                        <th>A</th>
+                        <th>B</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each Content.MatchingPairs}}
+                        <tr>
+                            <td>{{ColumnA}}</td>
+                            <td>{{ColumnB}}</td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+
+                <div class="tool-box">
+                    <div class="div">
+                        <a class="btn btn-danger btn-sm pull-right tool-btn"><i class="fa fa-trash"></i></a>
+                        <a data-toggle="modal" href="#{{getModalId}}"
+                           class="btn btn-primary btn-sm pull-right tool-btn"><i class="fa fa-pencil"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{#with getEditData}}
+        {{>InsertUpdateMatchingPopup}}
+    {{/with}}
+</template>
+
+<template name="MatchingPractise">
+    <div class="row">
+        <div class="col-md-12">
+            <h4><strong>Câu hỏi {{refineIndex index}}</strong>: {{{Content.Question}}}</h4>
+            {{#each Content.MatchingPairs}}
+                <div style="padding: 10px; clear: both;">
+                    <div class="col-lg-6 col-md-6 col-sm-6" style="padding-right: 20px">
+                        {{{ColumnA}}}
+                    </div>
+                    <div class="col-md-5 col-lg-5 col-sm-5">
+                        <select id="{{Id}}" name="{{Id}}" class="form-control">
+                            {{#each ../Content.MatchingPairs}}
+                                <option>{{{ColumnB}}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+            {{/each}}
+            {{#if ___isShowAnswer}}
+                <table class="table table-bordered table-hover" style="padding-top: 5px;background-color: white;">
+                    <thead>
+                    <tr>
+                        <th>A</th>
+                        <th>B</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each Content.MatchingPairs}}
+                        <tr>
+                            <td>{{ColumnA}}</td>
+                            <td>{{ColumnB}}</td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            {{/if}}
+        </div>
+    </div>
+</template>
+
+<template name="MatchingTest">
+    <div class="row">
+        <div class="col-md-12">
+            <h4><strong>Câu hỏi {{refineIndex index}}</strong>: {{{Content.Question}}}</h4>
+
+            <form id='{{Id}}' name='{{Id}}'>
+                {{#each answer in Content.Clue}}
+                    <div style="padding: 10px; clear: both;">
+                        <div class="col-lg-6 col-md-6 col-sm-6" style="padding-right: 20px">
+                            {{{answer.Content}}}
+                        </div>
+                        <div class="col-md-5 col-lg-5 col-sm-5">
+                            <select id="{{answer.Id}}" name="{{answer.Id}}" class="form-control">
+                                {{#each tmp in Content.Match}}
+                                    <option value="{{tmp.Id}}">{{{tmp.Content}}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    </div>
+                {{/each}}
+            </form>
+        </div>
+    </div>
+</template>
+<template name="MatchingPrint">
+    <div class="row">
+        <div class="col-md-12">
+            <h4><strong>Câu hỏi {{refineIndex index}}</strong>: {{{Content.Question}}}</h4>
+
+            <div class="row">
+                <div class="col-xs-5">
+                    {{#each Content.Clue}}
+                    <div class="panel panel-default">
+                        <div class="panel-body">{{{Content}}}</div>
+                    </div>
+                    {{/each}}
+                </div>
+                <div class="col-xs-2"></div>
+                <div class="col-xs-5">
+                    {{#each Content.Match}}
+                        <div class="panel panel-default">
+                            <div class="panel-body">{{{Content}}}</div>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="MatchingResult">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="">
+                <h5><strong>Câu hỏi {{refineIndex index}}</strong>: {{{Content.Question}}}</h5>
+                <table class="table table-bordered table-hover" style="background-color: white;">
+                    <thead>
+                    <tr>
+                        <th>A</th>
+                        <th>B</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each Content.MatchingPairs}}
+                        <tr>
+                            <td>{{ColumnA}}</td>
+                            <td>{{ColumnB}}</td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <hr style="display: block; margin-top: 0.5em; margin-bottom: 0.5em; margin-left: auto; margin-right: auto; border-style: inset; border-width: 1px;"/>
+</template>

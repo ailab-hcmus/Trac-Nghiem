@@ -1,0 +1,100 @@
+<template name="InsertUpdateEssay">
+    {{#autoForm id=getFromId schema=schema doc=getData type="normal"}}
+        {{> afQuickField name="Content.Question"}}
+        {{> afQuickField name="Content.Feedback"}}
+        {{> afQuickField name="Category"}}
+        {{> afFieldInput name="QuestionType"}}
+
+        <a href="#" data-toggle="collapse">Nhiều hơn</a>
+
+        <div class="collapse">
+            {{> afQuickField name="Level"}}
+            {{> afQuickField name="CorrectPoints"}}
+            {{> afQuickField name="IncorrectPoints"}}
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block"> Submit</button>
+    {{/autoForm}}
+</template>
+
+<template name="InsertUpdateEssayPopup">
+    <div class="modal fade" id="{{getModalId}}">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"> Câu hỏi tự luận</h4>
+                </div>
+                <div class="modal-body">
+                    {{#with passedData}}
+                        {{> InsertUpdateEssay }}
+                    {{/with}}
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="EssayPreview">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="question-preview">
+                <h5><strong>Câu hỏi {{refineIndex index}}</strong>: {{{Content.Question}}}</h5>
+                <textarea class="form-control" rows="3"></textarea>
+                <div class="tool-box">
+                    <div class="div">
+                        <a class="btn btn-danger btn-sm pull-right tool-btn"><i class="fa fa-trash"></i></a>
+                        <a data-toggle="modal" href="#{{getModalId}}"
+                           class="btn btn-primary btn-sm pull-right tool-btn"><i class="fa fa-pencil"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{#with getEditData}}
+        {{>InsertUpdateEssayPopup}}
+    {{/with}}
+</template>
+
+<template name="EssayPractise">
+    <div class="row">
+        <div class="col-md-12">
+            <h4><strong>Câu hỏi {{refineIndex index}}</strong>: {{{Content.Question}}}</h4>
+            <textarea class="form-control" rows="3"></textarea>
+            {{#if ___isShowAnswer}}
+                {{#each Content.AcceptedAnswers}}
+                    <div class="form-group has-success">
+                        <label class="control-label"><small>Đáp án {{refineIndex @index}}</small></label>
+                        <input type="text" class="form-control" value="{{Answer}}">
+                        <span class="help-block">{{Feedback}}</span>
+                    </div>
+                {{/each}}
+            {{/if}}
+        </div>
+    </div>
+</template>
+
+<template name="EssayTest">
+    <div class="row">
+        <div class="col-md-12">
+            <h4><strong>Câu hỏi {{refineIndex index}}</strong>: {{{Content.Question}}}</h4>
+            <form id="{{Id}}" name="{{Id}}">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="{{Id}}">
+                </div>
+            </form>
+        </div>
+    </div>
+</template>
+
+<template name="EssayResult">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="">
+                <h5><strong>Câu hỏi {{refineIndex index}}</strong>: {{{Content.Question}}}</h5>
+                <span class="form-control">{{{Content.Feedback}}}</span>
+            </div>
+        </div>
+    </div>
+</template>

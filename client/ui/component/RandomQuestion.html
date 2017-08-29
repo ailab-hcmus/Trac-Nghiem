@@ -1,0 +1,98 @@
+<template name="InsertUpdateRandomQuestion">
+    {{#autoForm id=getFromId schema=schema doc=getData type="normal"}}
+        {{> afQuickField name="Category"}}
+        {{> afQuickField name="NumberOfQuestion"}}
+        {{> afQuickField name="Level"}}
+        {{> afQuickField name="QuestionType"}}
+
+        <button type="submit" class="btn btn-primary btn-block"> Submit</button>
+    {{/autoForm}}
+</template>
+
+<template name="InsertUpdateRandomQuestionPopup">
+    <div class="modal fade" id="{{getModalId}}">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"> Câu hỏi ngẫu nhiên từ ngân hàng</h4>
+                </div>
+                <div class="modal-body">
+                    {{#with passedData}}
+                        {{> InsertUpdateRandomQuestion }}
+                    {{/with}}
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="RandomQuestionPreview">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="question-preview">
+                <h5><strong>Nhóm câu hỏi ngẫu nhiên {{refineIndex index}}</strong></h5>
+                {{>quickForm id=getFormId schema=schema doc=this type="readonly"}}
+                <div class="tool-box">
+                    <div class="div">
+                        <a class="btn btn-danger btn-sm pull-right tool-btn"><i class="fa fa-trash"></i></a>
+                        <a data-toggle="modal" href="#{{getModalId}}"
+                           class="btn btn-primary btn-sm pull-right tool-btn"><i class="fa fa-pencil"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{#with getEditData}}
+        {{>InsertUpdateRandomQuestionPopup}}
+    {{/with}}
+</template>
+
+<template name="RandomQuestionPractise">
+    <div class="row">
+        <div class="col-md-12">
+            <h4><strong>Câu hỏi {{refineIndex index}}</strong>: {{{Content.Question}}}</h4>
+            <textarea class="form-control" rows="3"></textarea>
+            {{#if ___isShowAnswer}}
+                {{#each Content.AcceptedAnswers}}
+                    <div class="form-group has-success">
+                        <label class="control-label"><small>Đáp án {{refineIndex @index}}</small></label>
+                        <input type="text" class="form-control" value="{{Answer}}">
+                        <span class="help-block">{{Feedback}}</span>
+                    </div>
+                {{/each}}
+            {{/if}}
+        </div>
+    </div>
+</template>
+
+<template name="RandomQuestionTest">
+    <div class="row">
+        <div class="col-md-12">
+            <h4><strong>Câu hỏi {{refineIndex index}}</strong>: {{{Content.Question}}}</h4>
+            <form id="{{Id}}" name="{{Id}}">
+                <div class="form-group">
+                      <input type="text" class="form-control" name="{{Id}}">
+                </div>
+            </form>
+        </div>
+    </div>
+</template>
+
+<template name="RandomQuestionResult">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="">
+                <h5><strong>Câu hỏi {{refineIndex index}}</strong>: {{{Content.Question}}}</h5>
+                {{#each Content.AcceptedAnswers}}
+                    <div class="form-group">
+                        <label class="control-label"><small>Đáp án {{refineIndex @index}}</small></label>
+                        <input type="text" class="form-control" value="{{Answer}}">
+                        <span class="help-block">{{Feedback}}</span>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</template>

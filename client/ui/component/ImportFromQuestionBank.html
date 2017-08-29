@@ -1,0 +1,41 @@
+<template name="ImportFromQuestionBankPopup">
+    <div class="modal fade" id="{{getModalId}}">
+        <div class="modal-dialog">
+            <div class="modal-content modal-lg">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Thêm câu hỏi từ ngân hàng câu hỏi</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <select name="category-selector" id="category-selector" class="form-control">
+                                    <option value="1233">Vui lòng chọn</option>
+                                    {{#each categories}}
+                                        <option value="{{_id}}">{{Name}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {{#each getQuestion}}
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <input name="question-import" type="checkbox" data-id="{{_id}}">
+                                </div>
+                            </div>
+                            <div class="col-md-11">
+                                {{> Template.dynamic template=(getPreviewTemplateName this.QuestionType) data=(refineQuestion this @index) }}
+                            </div>
+                        {{/each}}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="import" type="button" class="btn btn-primary">Thêm</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</template>

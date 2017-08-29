@@ -1,0 +1,31 @@
+{
+  "Vsee": {
+    "secretkey": "d9vn02rsa3bsqvr3mjfenw6h8ghvpcwjqonrr6qmgkfar1t4hvp6canzomktzsih"
+  },
+  "Capcha" : {
+    "privateKey": "6LcNFyAUAAAAALKT4uqcKPAFEaWkuM1ORIVZDPGL"
+  },
+  "BigBlueButton": {
+    "key": "e8d77927af71837b0e16125057f37313",
+    "server": "http://14.161.44.216/bigbluebutton/api"
+  },
+  "Email": {
+    "mail_url": "smtps://onlinetutoring.demo:hhtaz113388@smtp.gmail.com:465"
+  },
+  "vseeRegister": true,
+  "public": {
+    "Vsee": {
+      "apikey": "19igukq81hi06tbslayamgqbfae32dfcbwf4aymhggisfial5gguj6pvsyhvor5z"
+    },
+    "Capcha" : {
+      "publicKey": "6LcNFyAUAAAAAArX1YiF4-s-kdYwbMO3Ofqv_Dz_"
+    },
+    "loginState": {
+      "domain": ".demo-steme.tk",
+      "cookieName": "app-login-state-cookie-name"
+    },
+    "Email": {
+      "host_mail": "onlinetutoring.demo@gmail.com"
+    }
+  }
+}

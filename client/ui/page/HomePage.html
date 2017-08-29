@@ -1,0 +1,121 @@
+<template name="HomePage">
+    <div id="featured">
+        <div class="container">
+            <div class="col-full">
+                <div class="featured-content">
+                    <h2>Hệ thống trắc nghiệm cho Học tập &amp; Thi cử</h2>
+                    <p style="padding-right: 15%;">VnSigma cung cấp dịch vụ trắc nghiệm kiến thức online cho các đối
+                        tượng
+                        giáo viên, học viên có nhu cầu giảng dạy, học tập &amp; trao dồi kiến thức cá nhân. Ngân hàng đề
+                        thi
+                        gồm hơn 100.000 câu hỏi sẵn sàng cho mọi cấp độ!</p>
+                    {{#unless currentUser}}
+                        <a class="register-btn" data-toggle="modal" href="#register-modal">Đăng ký</a>
+                    {{/unless}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="features" class="homepage-content">
+        <div class="container">
+            <div class="col-full">
+                <div class="features-left">
+                    <h3>Giới thiệu VnSigma</h3>
+                    <a href="#" class="video4"><img src="/img/vid.png" width="100%"
+                                                    class="vid-img shake-and-bake"></a>
+                </div>
+
+                <div class="features-right">
+                    <h3>Tạo bài kiểm tra &amp; đề thi online</h3>
+                    <div class="pad-features-list-height">
+                        <ul>
+                            <li><span>An toàn &amp; bảo mật</span></li>
+                            <li><span>Dễ dàng nhanh chóng</span></li>
+                            <li><span>Không cần cài đặt phần mềm</span></li>
+                            <li><span>Cung cấp chứng chỉ &amp; xác minh</span></li>
+                            <li><span>Có cơ chế kiểm soát phân quyền</span></li>
+                            <li><span>Hệ thống điều phối học viên</span></li>
+                            <li><span>Tự động chấm điểm bài thi nhanh chóng &amp; chính xác</span></li>
+                        </ul>
+                    </div>
+
+                    <a href="/doc/SigmaQuizManual.pdf" class="more-features">Hướng
+                        dẫn sử dụng &gt;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="client-list" class="homepage-content">
+        <div class="container">
+            <div class="col-full">
+                <div class="client-title">Liên kết đào tạo</div>
+                <div class="client-images">
+                    <a href="http://www.hcmus.edu.vn/">
+                        <img src="/img/client-logo-dbl-1.jpg">
+                    </a>
+                    <a href="https://www.uit.edu.vn/">
+                        <img src="/img/client-logo-dbl-2.jpg">
+                    </a>
+                    <a href="http://www.vnuhcm.edu.vn/">
+                        <img src="/img/client-logo-dbl-3.jpg">
+                    </a>
+                    <a href="http://www.itec.hcmus.edu.vn">
+                        <img src="/img/client-logo-dbl-4.jpg">
+                    </a>
+
+                </div>
+                <a class="more-clients" href="#">&nbsp;</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="main" class="homepage-content">
+        <div class="container">
+            <div class="col-446">
+                <h3>Trắc nghiệm online tại VnSigma</h3>
+                <p>
+                    VnSigma là hệ thống trắc nghiệm online đầu tiên và tốt nhất tại Việt Nam hiện nay. Ứng dụng phục vụ
+                    cho
+                    giáo dục, cho doanh nghiệp trong đánh giá nhân sự, tuyển mộ nhà sư &amp; thậm chí là các vấn đề liên
+                    quan đến kiến thức thường nhật, sức khỏe, phổ cập kiến thức, hoặc luyện tập cá nhân.
+                </p>
+
+                <p>Các tính năng của hệ thống cho phép người dùng dễ dàng tạo ra các bài test theo yêu cầu, từ tự động
+                    đến tự chọn, từ tự tung đến tự tác, bất chấp thiệt hại &amp; an toàn. Hệ thống cũng hỗ trợ phản hồi
+                    kết
+                    quả tức thời, với các gợi ý và đánh giá tương ứng.
+                </p>
+
+            </div>
+            <div class="col-476">
+                <h3>Trường học &amp; doanh nghiệp</h3>
+                <p>
+                    Chúng tôi mở rộng hợp tác cũng như chuyển giao framework cho các trường trung học, đại học và doanh
+                    nghiệp. Tùy theo từng yêu cầu cụ thể, sẽ có các <a href="#">định mức hợp tác</a> phù hợp. Từ lạn
+                    thịt
+                    đến cắt cổ, cỡ nào chúng tôi cũng có.
+                </p>
+
+                <h3>Xem ví dụ</h3>
+                <ul>
+                    <li>Xem các ví dụ trong <a href="/doc/SigmaQuizManual.pdf">Hướng dẫn sử dụng</a> và <a href="#">Videos</a></li>
+                    <li>Trải nghiệm <a href="#">Bài thi mẫu</a></li>
+                </ul>
+
+
+            </div>
+
+            <div class="join-box">
+
+                {{#unless currentUser}}
+                    <a data-toggle="modal" href="#register-modal" class="join-btn">Tham gia</a>
+                {{/unless}}
+                Hàng nghìn chuyên gia giáo dục &amp; mục sư gia nhập VnSigma mỗi ngày.
+
+            </div>
+
+        </div>
+    </div>
+</template>

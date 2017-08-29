@@ -1,0 +1,65 @@
+<template name="HeaderSidebar">
+    <header class="main-header">
+        <!-- Logo -->
+        <a href="/" class="logo" style="background: #3c8dbc">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini">Trắc nghiệm</span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg">Trắc nghiệm</span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    {{#unless currentUser }}
+                        <li class="dropdown tasks-menu">
+                            <a class="dropdown-toggle" data-toggle="modal" href="#register-modal">
+                                ĐĂNG KÝ
+                            </a>
+                        </li>
+                        <li class="dropdown tasks-menu">
+                            <a class="dropdown-toggle" data-toggle="modal" href="#login-modal">
+                                ĐĂNG NHẬP
+                            </a>
+                        </li>
+                    {{else}}
+                        <!-- User Account Menu -->
+                        <li class="dropdown user user-menu">
+                            <!-- Menu Toggle Button -->
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <!-- The user image in the navbar-->
+                                <img src="/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                                <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                <span class="hidden-xs">{{currentUser.profile.fullName}}</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- The user image in the menu -->
+                                <li class="user-header">
+                                    <img src="/img/user2-160x160.jpg" class="img-circle"
+                                         alt="User Image">
+
+                                    <p>
+                                        {{currentUser.profile.fullName}}
+                                        <small>{{getEmail currentUser}}</small>
+                                    </p>
+                                </li>
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="#" id="sign-out" class="btn btn-default btn-flat">Sign out</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    {{/unless}}
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    {{>LoginPopup}}
+    {{>RegisterPopup}}
+</template>

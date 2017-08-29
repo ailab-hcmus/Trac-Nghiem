@@ -1,0 +1,84 @@
+<template name="EditQuiz">
+    <section class="content-header">
+        <h1>
+            Chỉnh sửa bài trắc nghiệm
+        </h1>
+        <a data-toggle="modal" href="#{{_id}}">Sửa thông tin</a>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+            <li><a href="#"> Trắc ngiệm</a></li>
+            <li class="active">{{quiz.Name}}</li>
+        </ol>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">{{quiz.Name}}</h3>
+                    </div>
+                    <div class="box-body">
+                        {{#each questions}}
+                            {{> Template.dynamic template=(getPreviewTemplateName this.QuestionType) data=(refineQuestion this @index) }}
+                        {{/each}}
+                        {{#each randomQuestions}}
+                            {{> Template.dynamic template="RandomQuestionPreview" data=(refineRandomQuestion this quiz._id @index)}}
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title text-center">Công cụ</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h5>Loại câu hỏi</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a data-toggle="modal" href="#insert-update-multiple-choice-modal" class="btn btn-default btn-block">Trắc nghiệm</a>
+                            </div>
+                            <div class="col-md-6">
+                                <a data-toggle="modal" href="#insert-update-fill-in-the-blank-modal" class="btn btn-default btn-block">Điền vào chỗ trống</a>
+                            </div>
+                            <div class="col-md-6">
+                                <a data-toggle="modal" href="#insert-update-matching-modal" class="btn btn-default btn-block">Ghép cặp</a>
+                            </div>
+                            <div class="col-md-6">
+                                <a data-toggle="modal" href="#insert-update-essay-modal" class="btn btn-default btn-block">Tự luận</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h5>Nhập câu hỏi</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a data-toggle="modal" href="#import-question-from-question-bank" class="btn btn-default btn-block">Ngân hàng</a>
+                            </div>
+                            <div class="col-md-6">
+                                <a data-toggle="modal" href="#insert-update-random-question-modal" class="btn btn-default btn-block">Câu hỏi ngẫn nhiên</a>
+                            </div>
+                        </div>
+                    </div>
+                    <hr style="margin: 0">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{>InsertUpdateMultipleChoicePopup quizId=quiz._id}}
+    {{>InsertUpdateTrueFalsePopup quizId=quiz._id}}
+    {{>InsertUpdateMatchingPopup quizId=quiz._id}}
+    {{>InsertUpdateEssayPopup quizId=quiz._id}}
+    {{>InsertUpdateFillInTheBlankPopup quizId=quiz._id}}
+    {{>ImportFromQuestionBankPopup quizId=quiz._id}}
+    {{>InsertUpdateRandomQuestionPopup quizId=quiz._id}}
+    {{>InsertUpdateQuizPopup quizData=quiz id= quiz._id}}
+</template>

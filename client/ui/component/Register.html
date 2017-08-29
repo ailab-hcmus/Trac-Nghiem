@@ -1,0 +1,27 @@
+<template name="Register">
+    {{#autoForm id=getFormId schema=schema type="normal"}}
+        {{>afQuickField name="username"}}
+        {{>afQuickField name="email"}}
+        {{>afQuickField name="password"}}
+        {{>afQuickField name="confirmPassword"}}
+        {{>afQuickField name="profile"}}
+
+        <button type="submit" class="btn btn-primary btn-block"> Đăng ký</button>
+    {{/autoForm}}
+</template>
+
+<template name="RegisterPopup">
+    <div class="modal fade" id="register-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"> Đăng ký</h4>
+                </div>
+                <div class="modal-body">
+                    {{> Register modalId="register-modal"}}
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

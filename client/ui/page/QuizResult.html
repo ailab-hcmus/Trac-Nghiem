@@ -1,0 +1,56 @@
+<template name="QuizResult">
+    <section class="content-header">
+        <h1>
+            Kết quả kiểm tra
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+            <li><a href="#"> Trắc ngiệm</a></li>
+            <li><a href="#"> Kết quả kiểm tra</a></li>
+            <li class="active">{{Name}}</li>
+        </ol>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">{{Name}}</h3>
+                    </div>
+
+                    <div class="box-body">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th><strong> STT </strong></th>
+                                <th><strong> Người kiểm tra </strong></th>
+                                <th><strong> Số điểm </strong></th>
+                                <th class="col-xs-1"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{#each results}}
+                                <tr>
+                                    <td><strong>{{ refineIndex @index}} </strong></td>
+                                    <td><strong>{{this.getOwnerName}} </strong></td>
+                                    <td><strong>{{NumTrue}} / {{Records.length}} </strong></td>
+                                    <td style="text-align: right">
+                                        <a href="{{pathFor 'ResultQuiz' _id=_id}}" class="btn btn-primary btn-sm result"
+                                           data-id="{{_id}}"><i class="fa fa-list-alt"></i></a>
+                                        <!--<a href="{{pathFor "EditQuiz" _id=_id }}"-->
+                                           <!--class="btn btn-primary  "-->
+                                           <!--data-id="{{_id}}"><i class="fa fa-pencil"></i></a>-->
+                                        <a href="#" class="btn btn-danger btn-sm" data-id="{{_id}}"><i
+                                                class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</template>

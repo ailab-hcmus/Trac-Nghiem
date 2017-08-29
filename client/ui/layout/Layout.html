@@ -1,0 +1,22 @@
+<template name="Layout">
+    {{>FinalHeader}}
+    {{>FinalMenu}}
+    <div class="hold-transition skin-blue sidebar-mini">
+        <div class="wrapper">
+
+            <!--{{>HeaderSidebar}}-->
+
+            <!-- Left side column. contains the sidebar -->
+            {{> Sidebar }}
+
+            <!-- =============================================== -->
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                {{> yield }}
+            </div>
+            <!-- /.content-wrapper -->
+        </div>
+    </div>
+    {{>FinalFooter}}
+</template>

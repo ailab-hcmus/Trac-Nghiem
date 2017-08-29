@@ -1,0 +1,26 @@
+.question-preview {
+  padding: 5px;
+  position: relative;
+  border: 1px;
+  border-radius: 4px;
+
+  &:hover {
+    background: #eeeeee;
+
+    .tool-box {
+      opacity: 1;
+    }
+  }
+
+  .tool-box {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    z-index: 10;
+    opacity: 0;
+
+    .tool-btn {
+      margin: 2px;
+    }
+  }
+}

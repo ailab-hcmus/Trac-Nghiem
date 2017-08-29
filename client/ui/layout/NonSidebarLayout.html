@@ -1,0 +1,30 @@
+<template name="NonSidebarLayout">
+    <div class="hold-transition skin-blue layout-top-nav">
+        <div class="wrapper">
+            {{> Header}}
+            <!-- Full Width Column -->
+
+            <div class="content-wrapper">
+                <div class="container">
+                    <!--&lt;!&ndash; Content Header (Page header) &ndash;&gt;-->
+                    <!--<section class="content-header">-->
+                        <!--<h1>-->
+                            <!--Top Navigation-->
+                            <!--<small>Example 2.0</small>-->
+                        <!--</h1>-->
+                    <!--</section>-->
+
+                    <!--&lt;!&ndash; Main content &ndash;&gt;-->
+                    <!--<section class="content">-->
+                        <!--{{!> yield }}-->
+                    <!--</section>-->
+                    {{> yield }}
+                    <!-- /.content -->
+                </div>
+                <!-- /.container -->
+            </div>
+            <!-- /.content-wrapper -->
+            {{>Footer}}
+        </div>
+    </div>
+</template>

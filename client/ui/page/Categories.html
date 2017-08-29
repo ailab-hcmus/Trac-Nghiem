@@ -1,0 +1,50 @@
+<template name="Categories">
+    <section class="content-header">
+        <h1>
+            Danh sách chủ đề
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+            <li class="active">Danh sách chủ đề</li>
+        </ol>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <a class="btn btn-primary pull-right btn-sm insert-category" data-toggle="modal"
+                           href="#insert-update-category-modal"><i class="fa fa-plus"></i></a>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th><strong> Chủ đề </strong></th>
+                                <!--<th class="col-xs-1"></th>-->
+                                <th class="col-xs-1"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{#each categories}}
+                                <tr>
+                                    <td><strong>{{Name}} </strong></td>
+                                    <!--<td><a data-toggle="modal" href="#insert-update-category-modal"-->
+                                           <!--class="btn btn-primary btn-block btn-xs update-category" data-id="{{_id}}">Chỉnh-->
+                                        <!--sửa</a></td>-->
+                                    <td><a href="#" class="btn btn-danger btn-block btn-xs" data-id="{{_id}}">Xóa</a>
+                                    </td>
+                                </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{#with selectedCategory}}
+        {{>InsertUpdateCategoryPopup}}
+    {{/with}}
+</template>

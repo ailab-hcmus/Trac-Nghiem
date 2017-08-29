@@ -1,0 +1,26 @@
+<template name="InsertUpdateCategory">
+    {{#autoForm id=getFromId schema=schema doc=getData type="normal"}}
+        {{> afQuickField name="Name"}}
+        {{> afQuickField name="Description"}}
+
+        <button type="submit" class="btn btn-primary btn-block"> Submit</button>
+    {{/autoForm}}
+</template>
+
+<template name="InsertUpdateCategoryPopup">
+    <div class="modal fade" id="insert-update-category-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"> Thêm loại câu hỏi</h4>
+                </div>
+                <div class="modal-body">
+                    {{#with this}}
+                        {{> InsertUpdateCategory modalId="insert-update-category-modal"}}
+                    {{/with}}
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

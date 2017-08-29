@@ -1,0 +1,159 @@
+<template name="TrueFalseTest">
+    <div class="row">
+        <div class="col-md-12">
+            <h4><strong>Câu hỏi {{refineIndex index}}</strong>: {{{Content.Question}}}</h4>
+            <form id="{{Id}}" name="{{Id}}">
+                <div class="form-group">
+                    <div class="input-group" style=" margin-bottom: 1px; ">
+                        <span class="input-group-addon">
+                          <input id="true" type="radio" name="true-false}">
+                        </span>
+                        <p class="form-control">True</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group" style=" margin-bottom: 1px; ">
+                        <span class="input-group-addon">
+                          <input id="false" type="radio" name="true-false}">
+                        </span>
+                        <p class="form-control">False</p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</template>
+
+<!------------------------------------------------------------------------------>
+
+<template name="InsertUpdateTrueFalse">
+    {{#autoForm id=getFromId schema=schema doc=getData type="normal"}}
+        {{> afQuickField name="Content.Question"}}
+        {{> afQuickField name="Content.Answer"}}
+        {{> afQuickField name="Content.Feedback"}}
+        {{> afQuickField name="Category"}}
+        {{> afFieldInput name="QuestionType"}}
+
+        <a href="#" data-toggle="collapse">Nhiều hơn</a>
+
+        <div class="collapse">
+            {{> afQuickField name="Level"}}
+            {{> afQuickField name="CorrectPoints"}}
+            {{> afQuickField name="IncorrectPoints"}}
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block"> Submit</button>
+    {{/autoForm}}
+</template>
+
+<template name="InsertUpdateTrueFalsePopup">
+    <div class="modal fade" id="{{getModalId}}">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"> Câu hỏi đúng sai</h4>
+                </div>
+                <div class="modal-body">
+                    {{#with passedData}}
+                        {{> InsertUpdateTrueFalse }}
+                    {{/with}}
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="TrueFalsePreview">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="question-preview">
+                <h5><strong>Câu hỏi {{refineIndex index}}</strong>: {{{Content.Question}}}</h5>
+
+                <div class="form-group">
+                    <div class="input-group" style=" margin-bottom: 1px; ">
+                        <span class="input-group-addon">
+                          <input type="checkbox" checked="{{#if Content.Answer}}checked{{/if}}" disabled="disabled">
+                        </span>
+                        <p class="form-control">Đúng</p>
+                    </div>
+
+                    <div class="input-group" style=" margin-bottom: 1px; ">
+                        <span class="input-group-addon">
+                          <input type="checkbox" checked="{{#unless Content.Answer}}checked{{/unless}}"
+                                 disabled="disabled">
+                        </span>
+                        <p class="form-control">Sai</p>
+                    </div>
+                </div>
+
+                <div class="tool-box">
+                    <div class="div">
+                        <a class="btn btn-danger btn-sm pull-right tool-btn"><i class="fa fa-trash"></i></a>
+                        <a data-toggle="modal" href="#{{getModalId}}"
+                           class="btn btn-primary btn-sm pull-right tool-btn"><i class="fa fa-pencil"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{#with getEditData}}
+        {{>InsertUpdateTrueFalsePopup}}
+    {{/with}}
+</template>
+
+
+
+
+
+<template name="FreeTextEditResult">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="">
+                <h5><strong>Câu hỏi {{refineIndex index}}</strong>: {{{Question}}}</h5>
+                {{#each Options}}
+                    <div class="form-group">
+                        <div class="input-group" style=" margin-bottom: 1px; ">
+                        <span class="input-group-addon">
+                          <input type="checkbox" checked="{{#if IsAnswer}}checked{{/if}}" disabled="disabled">
+                        </span>
+                            <p class="form-control">{{{Content}}}</p>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+
+    <hr style="display: block; margin-top: 0.5em; margin-bottom: 0.5em; margin-left: auto; margin-right: auto; border-style: inset; border-width: 1px;"/>
+</template>
+
+<template name="TrueFalseResult">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="">
+                <h5><strong>Câu hỏi {{refineIndex index}}</strong>: {{{Question}}}</h5>
+
+                <div class="form-group">
+                    <div class="input-group" style=" margin-bottom: 1px; ">
+                        <span class="input-group-addon">
+                          <input type="checkbox" checked="{{#if Answer}}checked{{/if}}" disabled="disabled">
+                        </span>
+                        <p class="form-control">Đúng</p>
+                    </div>
+
+                    <div class="input-group" style=" margin-bottom: 1px; ">
+                        <span class="input-group-addon">
+                          <input type="checkbox" checked="{{#unless Answer}}checked{{/unless}}"
+                                 disabled="disabled">
+                        </span>
+                        <p class="form-control">Sai</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr style="display: block; margin-top: 0.5em; margin-bottom: 0.5em; margin-left: auto; margin-right: auto; border-style: inset; border-width: 1px;"/>
+</template>
+
